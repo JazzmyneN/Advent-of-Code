@@ -37,11 +37,11 @@ function day3b() {
     var x2 = 0;
     
     var directions = [];
-    santa = ["0 0"];
-    robosanta = ["0 0"];
+    var santa = ["0 0"];
+    var robosanta = [];
 
     directions = input.split("");
-
+   
     // for(i = 0; i < directions.length; i ++) {
     //     if(directions[i]%2 !== 0){
     //         santa.push(directions[i]);
@@ -52,47 +52,51 @@ function day3b() {
     // no  need to make new arrays, just check for odd and even
 
     for(i = 0; i < directions.length; i++){
-        if(i%2 !== 0){
+        if(i%2 === 0){
+       
             var horizontal = [];
             var vertical = [];
-            if (santa[i] === "^") {
+            if (directions[i] === "^") {
                 y += 1;
                 vertical.push(y);
-            } else if (santa[i] === "v") {
+            } else if (directions[i] === "v") {
                 y -= 1;
                 vertical.push(y);
             }
-            if (santa[i] === ">") {
+            if (directions[i] === ">") {
                 x += 1;
                 horizontal.push(x);
-            } else if (santa[i] === "<") {
+            } else if (directions[i] === "<") {
                 x -= 1;
                 horizontal.push(x);
             }
             santa.push(y + " " + x);
+           
         }
         else {
+            
             var horizontal = [];
             var vertical = [];
-            if (robosanta[i] === "^") {
+            if (directions[i] === "^") {
                 y2 += 1;
-                vertical.push(y);
-            } else if (robosanta[i] === "v") {
+                vertical.push(y2);
+            } else if (directions[i] === "v") {
                 y2 -= 1;
-                vertical.push(y);
+                vertical.push(y2);
             }
-            if (robosanta[i] === ">") {
+            if (directions[i] === ">") {
                 x2 += 1;
-                horizontal.push(x);
-            } else if (robosanta[i] === "<") {
+                horizontal.push(x2);
+            } else if (directions[i] === "<") {
                 x2 -= 1;
-                horizontal.push(x);
+                horizontal.push(x2);
             }
-            robosanta.push(y + " " + x);
+            robosanta.push(y2 + " " + x2);
+            
         }
     }   
-
-    uniqueRobosanta = new Set(robosanta); //remove duplicate entries
-    uniqueSanta = new Set(santa); //remove duplicate entries
-    output.innerHTML = uniqueSanta.size + uniqueRobosanta.size;
+   
+    var allSanta = robosanta.concat(santa);
+    var allSantaNoRepeat = new Set(allSanta);
+    output.innerHTML = allSantaNoRepeat.size;
 }
