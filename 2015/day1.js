@@ -12,12 +12,10 @@ function day1a() {
     }
     for(var i = 0; i < array.length; i++){
         if(array[i] === "("){
-            answer++;
-            
+            answer++;       
         }
         else {
             answer--;
-            
         }
     }
     output.innerHTML = answer;
