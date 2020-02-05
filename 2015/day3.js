@@ -35,13 +35,10 @@ function day3b() {
     var x = 0;
     var y2 = 0;
     var x2 = 0;
-    
     var directions = [];
     santa = ["0 0"];
     robosanta = ["0 0"];
-
     directions = input.split("");
-
     // for(i = 0; i < directions.length; i ++) {
     //     if(directions[i]%2 !== 0){
     //         santa.push(directions[i]);
@@ -50,7 +47,6 @@ function day3b() {
     //     }
     // }
     // no  need to make new arrays, just check for odd and even
-
     for(i = 0; i < directions.length; i++){
         if(i%2 !== 0){
             var horizontal = [];
@@ -91,7 +87,6 @@ function day3b() {
             robosanta.push(y + " " + x);
         }
     }   
-
     uniqueRobosanta = new Set(robosanta); //remove duplicate entries
     uniqueSanta = new Set(santa); //remove duplicate entries
     output.innerHTML = uniqueSanta.size + uniqueRobosanta.size;
