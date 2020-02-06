@@ -25,7 +25,6 @@ function day1a() {
     };
     output.innerHTML = Math.abs(coords[0]) + Math.abs(coords[1]);
 }
-
 function day1b() {
     var input = document.getElementById("input").value;
     var output = document.getElementById("output");
@@ -72,19 +71,15 @@ function day1b() {
     };
     console.log(newCoords);
     var noRepeat = new Set(newCoords);
-    
     var allRepeat = [];
-
     for (var i = 0; i < newCoords.length; i++) {
         if (noRepeat.has(newCoords[i])) {
             noRepeat.delete(newCoords[i]) //deletes any values that show up in the set
-         
         }
         else {
             allRepeat.push(newCoords[i]) // therefore only pushes repeats
         };
     };
-    
     console.log(allRepeat);
     var answer = allRepeat[0].split(" ");
     output.innerHTML = Math.abs(answer[0]) + Math.abs(answer[1]) + 1;
