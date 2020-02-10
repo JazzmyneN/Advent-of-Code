@@ -81,59 +81,53 @@ function day5a() {
 function day5b() {
     var input = document.getElementById("input").value;
     var output = document.getElementById("output");
-    var allStrings = input.split(" ");
-    //splits think into pairs
-    var ans = 0;
-    for (var i = 0; i < allStrings.length; i++) {
-        var doubleLetter = false;
-        var tripleLetter = false;
-        // checks for doubles
-        for (var k = 0; k < allStrings[i].length; k++) {
-            for (var j = k + 2; j < allStrings[i].length; j++) {
-                if (allStrings[i].slice(k, k + 2) === allStrings[i].slice(j, j + 2)) {
-                    doubleLetter = true;
-                    console.log(allStrings[i].slice(k, k + 2), allStrings[i].slice(j, j + 2))
-                };
-            };
-        };
+    input = input.split(" ");
+    // Gross code
+    // var ans = 0;
+    // for (var i = 0; i < allStrings.length; i++) {
+    //     var doubleLetter = false;
+    //     var tripleLetter = false;
+    //     // checks for doubles
+    //     for (var k = 0; k < allStrings[i].length; k++) {
+    //         for (var j = k + 2; j < allStrings[i].length; j++) {
+    //             if (allStrings[i].slice(k, k + 2) === allStrings[i].slice(j, j + 2)) {
+    //                 doubleLetter = true;
+    //                 console.log(allStrings[i].slice(k, k + 2), allStrings[i].slice(j, j + 2))
+    //             };
+    //         };
+    //     };
         
-        for (var j = 1; j < allStrings[i].length; j++) {
-            if (allStrings[i].charAt(k) === allStrings[i].charAt(k + 2)) {
-                tripleLetter = true;
-                console.log(allStrings[i].charAt(k) + " is equal to" + allStrings[i].charAt(k + 2))
-            };
-        };
-        if (tripleLetter === true && doubleLetter === true) {
-            ans++
-        };
-    };
+    //     for (var j = 1; j < allStrings[i].length; j++) {
+    //         if (allStrings[i].charAt(k) === allStrings[i].charAt(k + 2)) {
+    //             tripleLetter = true;
+    //             console.log(allStrings[i].charAt(k) + " is equal to" + allStrings[i].charAt(k + 2))
+    //         };
+    //     };
+    //     if (tripleLetter === true && doubleLetter === true) {
+    //         ans++
+    //     };
+    // };
 
-    output.innerHTML = ans;
-};
-
-function day5Peck() {
-    //this was done by mr peck
-    output.innerHTML = "";
+    // credit to Mr.Peck for the code
     var ans = 0;
-    input = input.split(",");
-    for (var x = 0; x < input.length; x++) {
-        let pair = false;
-        let doubleLetters = false;
-        for (var i = 0; i < input[x].length; i++) {
+    for (var x = 0; x < input.length; x++) { // for every item in input
+        let pair = false; // flag for pairs
+        let doubleLetters = false; // flag for double letters
+        for (var i = 0; i < input[x].length; i++) { // for every letter in current index
             //compare every 2 letters to every other 2 letters
-            for (var j = i + 2; j < input[x].length; j++) {
-                if (input[x].slice(i, i + 2) === input[x].slice(j, j + 2)) {
-                    pair = true;
+            for (var j = i + 2; j < input[x].length; j++) { // new index based on previous index
+                if (input[x].slice(i, i + 2) === input[x].slice(j, j + 2)) { // compares first pair to next pair in second index, then second pair to every pair in second index
+                    pair = true; // outputs true
                 };
             };
             //check if it has a double 
-            if (input[x].charAt(i) === input[x].charAt(i + 2)) {
-                doubleLetters = true;
+            if (input[x].charAt(i) === input[x].charAt(i + 2)) { // checks if current input character is equal to the one 2 characters away
+                doubleLetters = true; // outputs if double is found
             };
         };
         if (doubleLetters === true && pair === true) {
             ans++;
         };
-    };
+    }; 
     output.innerHTML = ans;
-}
+};
