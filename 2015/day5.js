@@ -83,43 +83,57 @@ function day5b() {
     var output = document.getElementById("output");
     var allStrings = input.split(" ");
     //splits think into pairs
-    function doubleChecker(str) {
-        var letterPairs = [];
-        for (var i = 0; i < 15; i++) {
-            var newPair = (str.charAt(i) + str.charAt(i + 1));
-            letterPairs.push(newPair);
-        };
-        for (var k = 0; k < letterPairs.length; k++) {
-            for (var j = 1; j < 15; j++) {
-                if (letterPairs[k] === letterPairs[k + j]) {
-                    return true;
+    var ans = 0;
+    for (var i = 0; i < allStrings.length; i++) {
+        var doubleLetter = false;
+        var tripleLetter = false;
+        // checks for doubles
+        for (var k = 0; k < allStrings[i].length; k++) {
+            for (var j = k + 2; j < allStrings[i].length; j++) {
+                if (allStrings[i].slice(k, k + 2) === allStrings[i].slice(j, j + 2)) {
+                    doubleLetter = true;
+                    console.log(allStrings[i].slice(k, k + 2), allStrings[i].slice(j, j + 2))
                 };
             };
         };
+        
+        for (var j = 1; j < allStrings[i].length; j++) {
+            if (allStrings[i].charAt(k) === allStrings[i].charAt(k + 2)) {
+                tripleLetter = true;
+                console.log(allStrings[i].charAt(k) + " is equal to" + allStrings[i].charAt(k + 2))
+            };
+        };
+        if (tripleLetter === true && doubleLetter === true) {
+            ans++
+        };
     };
-    //splits think into triplets
-    function tripletMaker(str) {
-        var letterTrip = [];
-        for (var i = 0; i < str.length; i++) {
-            var newTrip = (str.charAt(i) + str.charAt(i + 1) + str.charAt(i + 2));
-            letterTrip.push(newTrip);
-        };
 
-        for (var k = 0; k < 14; k++) {
-            if (letterTrip[k].charAt(0) === letterTrip[k].charAt(2)) {
-                return true;
-            }
-        };
-
-    };
-    
-    var trueCount = 0;
-    
-    for (var i = 0; i < allStrings.length; i++) {
-        //counts all strings that pass tests
-        if (tripletMaker(allStrings[i]) &&  doubleChecker(allStrings[i])) {
-            trueCount++;
-        };
-    }
-    output.innerHTML = trueCount;
+    output.innerHTML = ans;
 };
+
+function day5Peck() {
+    //this was done by mr peck
+    output.innerHTML = "";
+    var ans = 0;
+    input = input.split(",");
+    for (var x = 0; x < input.length; x++) {
+        let pair = false;
+        let doubleLetters = false;
+        for (var i = 0; i < input[x].length; i++) {
+            //compare every 2 letters to every other 2 letters
+            for (var j = i + 2; j < input[x].length; j++) {
+                if (input[x].slice(i, i + 2) === input[x].slice(j, j + 2)) {
+                    pair = true;
+                };
+            };
+            //check if it has a double 
+            if (input[x].charAt(i) === input[x].charAt(i + 2)) {
+                doubleLetters = true;
+            };
+        };
+        if (doubleLetters === true && pair === true) {
+            ans++;
+        };
+    };
+    output.innerHTML = ans;
+}

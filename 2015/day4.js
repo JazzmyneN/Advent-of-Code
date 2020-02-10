@@ -23,5 +23,6 @@ function day4b() {
             sixZeroCheck = true;
         };
         i++;
+        
     };
 };
