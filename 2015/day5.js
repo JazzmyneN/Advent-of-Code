@@ -82,40 +82,44 @@ function day5b() {
     var input = document.getElementById("input").value;
     var output = document.getElementById("output");
     var allStrings = input.split(" ");
-
-    var letterPairs = [];
-
-    function pairMaker(str) {
-        for (var i = 0; i < str.length; i++) {
+    //splits think into pairs
+    function doubleChecker(str) {
+        var letterPairs = [];
+        for (var i = 0; i < 15; i++) {
             var newPair = (str.charAt(i) + str.charAt(i + 1));
             letterPairs.push(newPair);
         };
-    };
-
-    var repeatPair = [];
-    for (var i = 0; i < letterPairs.length; i++) {
-        for (var j = 0; j < letterPairs.length; j++) {
-            letterPairs[i] === letterPairs[i + j];
-            repeatPair.push(letterPairs[i]);
+        for (var k = 0; k < letterPairs.length; k++) {
+            for (var j = 1; j < 15; j++) {
+                if (letterPairs[k] === letterPairs[k + j]) {
+                    return true;
+                };
+            };
         };
     };
-    var pairs = pairMaker(input);
-    console.log(repeatPair);
-    //     letterPairs.pop();
-    //     return(pairRepeat);
-    // };
-    // function tripletMaker(str){
-    //     var letterTrip = [];
-    //     var tripletRepeat = [];
-    //     for(var i = 0; i < str.length; i++) {
-    //         var newTrip = (str.charAt(i) + str.charAt(i+1) + str.charAt(i+2));
-    //         letterTrip.push(newTrip);
-    //         if(newTrip[0] === newTrip[2]) {
-    //             tripletRepeat.push(newTrip);
-    //         }
-    //     };
-    //     return(tripletRepeat);
-    // };
-    // console.log(pairMaker(input));
-    // console.log(tripletMaker(input));
+    //splits think into triplets
+    function tripletMaker(str) {
+        var letterTrip = [];
+        for (var i = 0; i < str.length; i++) {
+            var newTrip = (str.charAt(i) + str.charAt(i + 1) + str.charAt(i + 2));
+            letterTrip.push(newTrip);
+        };
+
+        for (var k = 0; k < 14; k++) {
+            if (letterTrip[k].charAt(0) === letterTrip[k].charAt(2)) {
+                return true;
+            }
+        };
+
+    };
+    
+    var trueCount = 0;
+    
+    for (var i = 0; i < allStrings.length; i++) {
+        //counts all strings that pass tests
+        if (tripletMaker(allStrings[i]) &&  doubleChecker(allStrings[i])) {
+            trueCount++;
+        };
+    }
+    output.innerHTML = trueCount;
 };
